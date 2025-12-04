@@ -40,15 +40,16 @@
     }
   ],
   "dependencies": {
-    "jquery": ">=1.7.2"
+    "jquery": ">=3.6.4"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.4.2",
-    "gulp-eslint": "^4.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
-    "gulp-sass": "^3.1.0"
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "1.71.1"
   },
   "license": "MIT",
   "bugs": {

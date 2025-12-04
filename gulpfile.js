@@ -1,17 +1,19 @@
-const gulp = require('gulp');
-const uglify = require("gulp-uglify");
-const cleanCss = require("gulp-clean-css");
-const eslint = require("gulp-eslint");
-const rename = require("gulp-rename");
-const sass = require('gulp-sass');
+import gulp from 'gulp';
+import * as dartSass from 'sass';
+import uglify from 'gulp-uglify';
+import cleanCss from 'gulp-clean-css';
+import eslint from 'gulp-eslint';
+import rename from 'gulp-rename';
+import gulpSass from 'gulp-sass';
 
+const sass = gulpSass(dartSass); // اصلاح شد
 const file = 'jquery.nestable';
 
 // compress js
 gulp.task('js', function () {
-    gulp.src(file + '.js')
+    return gulp.src(file + '.js') // اضافه شد return
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -23,12 +25,12 @@ gulp.task('sass', function () {
 });
 
 // compress css
-gulp.task('css', ['sass'], function () {
-    gulp.src(file + '.css')
+gulp.task('css', gulp.series('sass', function () { // تغییر سینتکس
+    return gulp.src(file + '.css') // اضافه شد return
         .pipe(cleanCss())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist/'));
-});
+}));
 
 gulp.task('test', function () {
     return gulp.src([file + '.js'])
@@ -38,4 +40,4 @@ gulp.task('test', function () {
 });
 
 // build assets
-gulp.task('default', ['js', 'css']);
+gulp.task('default', gulp.parallel('js', 'css')); // تغییر سینتکس
